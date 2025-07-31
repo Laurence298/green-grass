@@ -4,7 +4,6 @@ class CreateOrderTypes < ActiveRecord::Migration[8.0]
       t.integer :order_type_id
       t.string :name
       t.timestamps
-
     end
   end
 end
