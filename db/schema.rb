@@ -10,11 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_07_30_041002) do
+ActiveRecord::Schema[8.0].define(version: 2025_07_31_014816) do
+  create_table "addresses", force: :cascade do |t|
+    t.string "city"
+    t.string "street_adress"
+    t.string "country"
+    t.string "postal_code"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "customers", force: :cascade do |t|
     t.string "name"
     t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "addresses_id"
+    t.index ["addresses_id"], name: "index_customers_on_addresses_id"
   end
+
+  add_foreign_key "customers", "addresses", column: "addresses_id"
 end
