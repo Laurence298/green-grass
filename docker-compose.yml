@@ -1,0 +1,12 @@
+services:
+  web:
+    build: .
+    environment:
+      - RAILS_MASTER_KEY
+    ports:
+      - "3000:80"
+    develop:
+      watch:
+        - action: sync+restart
+          path: ./app
+          target: /app/app

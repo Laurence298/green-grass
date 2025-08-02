@@ -10,39 +10,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_07_31_022821) do
+ActiveRecord::Schema[8.0].define(version: 2025_07_31_040411) do
   create_table "addresses", force: :cascade do |t|
     t.string "city"
-    t.string "street_adress"
-    t.string "country"
+    t.string "street_address"
     t.string "postal_code"
+    t.string "country"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "customers", force: :cascade do |t|
+    t.integer "customer_id"
     t.string "name"
     t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "addresses_id"
-    t.index ["addresses_id"], name: "index_customers_on_addresses_id"
   end
 
   create_table "order_types", force: :cascade do |t|
     t.integer "order_type_id"
-    t.string "name"
+    t.string "order_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "orders", force: :cascade do |t|
     t.integer "order_id"
-    t.integer "customer_id"
-    t.integer "order_type_id"
+    t.integer "order_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
-
-  add_foreign_key "customers", "addresses", column: "addresses_id"
 end
