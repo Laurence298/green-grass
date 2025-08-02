@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  get "customers/index"
+  get "requested_service/index"
+  root "home#index"
+
   resources :customers
-  root "customer#index"
+  resources :services
+  resources :requested_services
+  resources :addresses
 end

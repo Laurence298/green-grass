@@ -1,0 +1,15 @@
+<h1>Service#index</h1>
+
+
+
+<p>Listing all services:</p>
+
+<% if @services.any? %>
+  <ul>
+    <%= render ServiceComponent.with_collection(@services) %>
+  </ul>
+<% else %>
+  <p>No services found.</p>
+<% end %>
+<%= link_to "New Service", new_service_path %>
+<%= link_to "Back to Home", root_path %>

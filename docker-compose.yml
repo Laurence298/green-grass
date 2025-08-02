@@ -3,10 +3,40 @@ services:
     build: .
     environment:
       - RAILS_MASTER_KEY
+      - RAILS_ENV=development
     ports:
       - "3000:80"
     develop:
       watch:
-        - action: sync+restart
+        - action: sync
           path: ./app
-          target: /app/app
+          target: /rails/app
+        - action: sync
+          path: ./config
+          target: /rails/config
+        - action: rebuild
+          path: ./Gemfile
+        - action: rebuild
+          path: ./Gemfile.lock
+        - action: sync+restart
+          path: ./config/database.yml
+          target: /rails/config/database.yml
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: watching_grass_development
+    ports:
+      - "5432:5432"
+    shm_size: 128mb
+  pgadmin:
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: laurencemunoko@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: blackace99
+    ports:
+      - "8080:80"
+

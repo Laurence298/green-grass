@@ -1,0 +1,19 @@
+<h1>Requested Services</h1>
+
+<% if @requested_services.any? %>
+  <ul>
+    <% @requested_services.each do |requested_service| %>
+      <li>
+        <strong>Requested By:</strong> <%= requested_service.customer.name %><br>
+        <strong>Status:</strong> <%= requested_service.status %><br>
+        <strong>Service:</strong> <%= requested_service.service.name if requested_service.service %><br>
+        <%= link_to "Show", requested_service_path(requested_service) %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No requested services found.</p>
+<% end %>
+
+<%= link_to "New Service Request", new_requested_service_path %>
+<%= link_to "Back to Home", root_path %>

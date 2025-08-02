@@ -1,0 +1,20 @@
+<h1> create a new service</h1>
+
+<p>Fill in the details to create a new service:</p>
+<%= form_with model: @service do |form| %>
+  <div>
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :description %>
+    <%= form.text_area :description %>
+  </div>
+
+  <div>
+    <%= form.submit "Create Service" %>
+  </div>
+  <% end %>
+
+  <%= link_to "Back", services_path %>
